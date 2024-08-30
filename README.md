@@ -11,6 +11,7 @@ The application may be executed by running `gradlew bootRun`.
 ### How to Use
 The following endpoints are available to use:
 ```
+--> Employee
 * CREATE
     * HTTP Method: POST 
     * URL: localhost:8080/employee
@@ -25,6 +26,23 @@ The following endpoints are available to use:
     * URL: localhost:8080/employee/{id}
     * PAYLOAD: Employee
     * RESPONSE: Employee
+    
+--> ReportStructure
+* READ
+    * HTTP Method: GET
+    * URL: localhost:8080/repstruct/{id}
+    * Repsonse: ReportStructure
+    
+--> Compensation
+* CREATE
+    * HTTP Method: POST
+    * URL: localhost:8080/compensation
+    * PAYLOAD: Compensation
+    * RESPONSE: Compensation
+* READ
+    * HTTP Method: GET
+    * URL: localhost:8080/compensation/{id}
+    * RESPONSE: Compensation
 ```
 The Employee has a JSON schema of:
 ```json
@@ -53,6 +71,43 @@ The Employee has a JSON schema of:
   }
 }
 ```
+
+The ReportStructure has a JSON schema of:
+```json
+{
+  "type":"ReportStructure",
+  "properties": {
+    "Employee": {
+      "type": "object"
+    },
+    "numberOfReports": {
+      "type": "int"
+    }
+  }
+}
+```
+
+The Compensation has a JSON schema of:
+```json
+{
+  "type":"Compensation",
+  "properties": {
+    "compId": {
+      "type": "String"
+    },
+    "employee": {
+      "type": "object"
+    },
+    "salary": {
+      "type": "string"
+    },
+    "effectiveDate": {
+      "type": "java.time.Instant"
+    }
+  }
+}
+```
+
 For all endpoints that require an "id" in the URL, this is the "employeeId" field.
 
 ## What to Implement
